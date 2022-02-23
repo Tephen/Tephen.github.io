@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Keep Team">
+    
+    <title>
+        
+            Mac搭建以太坊环境并运行HelloWorld |
+        
+        Keep Theme
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"en"};
+    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.svg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":false},"code_copy":{"enable":false,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Keep Theme
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Mac搭建以太坊环境并运行HelloWorld</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Keep Team</span>
+                        
+                            <span class="author-label">Lv1</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-10-31 14:59:02
+    </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/">区块链</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <ul>
+<li><p>环境搭建</p>
+<ul>
+<li><p>系统环境Macbook Air M1 + Big Sur 11.6</p>
+</li>
+<li><p>使用如下命令安装geth开发工具</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew tap ethereum/ethereum</span><br><span class="line">brew install ethereum</span><br></pre></td></tr></table></figure></li>
+<li><p>使用如下命令测试geth是否正确安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">geth -h</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>私有链创建&amp;简单测试</p>
+<ul>
+<li><p>新建空目录(以test为例),在空目录下新建创世区块配置文件genesis.json,下面是一个genesis.json文件的示例</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;config&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;chainId&quot;</span>: <span class="number">15665883188</span>,</span><br><span class="line">      <span class="attr">&quot;homesteadBlock&quot;</span>: <span class="number">0</span>,</span><br><span class="line">      <span class="attr">&quot;eip150Block&quot;</span>: <span class="number">0</span>,</span><br><span class="line">      <span class="attr">&quot;eip150Hash&quot;</span>: <span class="string">&quot;0x0000000000000000000000000000000000000000000000000000000000000000&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;eip155Block&quot;</span>: <span class="number">0</span>,</span><br><span class="line">      <span class="attr">&quot;eip158Block&quot;</span>: <span class="number">0</span>,</span><br><span class="line">      <span class="attr">&quot;byzantiumBlock&quot;</span>: <span class="number">0</span>,</span><br><span class="line">      <span class="attr">&quot;constantinopleBlock&quot;</span>: <span class="number">0</span>,</span><br><span class="line">      <span class="attr">&quot;petersburgBlock&quot;</span>: <span class="number">0</span>,</span><br><span class="line">      <span class="attr">&quot;istanbulBlock&quot;</span>: <span class="number">0</span>,</span><br><span class="line">      <span class="attr">&quot;ethash&quot;</span>: &#123;&#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">&quot;nonce&quot;</span>: <span class="string">&quot;0x0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;timestamp&quot;</span>: <span class="string">&quot;0x5ddf8f3e&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;extraData&quot;</span>: <span class="string">&quot;0x0000000000000000000000000000000000000000000000000000000000000000&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;gasLimit&quot;</span>: <span class="string">&quot;0x47b760&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;difficulty&quot;</span>: <span class="string">&quot;0x400&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;mixHash&quot;</span>: <span class="string">&quot;0x0000000000000000000000000000000000000000000000000000000000000000&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;coinbase&quot;</span>: <span class="string">&quot;0x0000000000000000000000000000000000000000&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;alloc&quot;</span>: &#123; &#125;,</span><br><span class="line">    <span class="attr">&quot;number&quot;</span>: <span class="string">&quot;0x0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;gasUsed&quot;</span>: <span class="string">&quot;0x0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;parentHash&quot;</span>: <span class="string">&quot;0x0000000000000000000000000000000000000000000000000000000000000000&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br></pre></td></tr></table></figure></li>
+<li><p>初始化&amp;启动私有链</p>
+<p>在test目录下使用如下命令初始化私有链</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">geth --datadir . --init genesis.json</span><br></pre></td></tr></table></figure>
+
+<p>命令执行成功后会在test目录下生成geth和keystore两个子目录,其中geth目录存放生成的链的相关信息,keystore目录存放链上用户信息.初始化未指定默认账户,因此当前keystore目录为空.之后退出geth后再次进入test链时不需要再执行初始化命令,直接使用后续的启动命令启动即可.</p>
+<p>随后继续使用如下命令启动私有链</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">geth --networkid 191 --nodiscover --http --http.addr &quot;0.0.0.0&quot; --http.port 8545 --http.api personal,eth,net,web3 --allow-insecure-unlock --datadir . console 2&gt;&gt;test.log</span><br></pre></td></tr></table></figure>
+
+<p>其中<code>console 2&gt;&gt;test.log</code>部分将控制台输出重定向到test目录下的test.log文件,否则链启动后日志信息将会一直刷新在控制台,导致进行后续操作的不便.若需要实时观察日志内容,可新建终端使用如下命令实时显示日志文件内容.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail -f test.log</span><br></pre></td></tr></table></figure>
+
+<p>效果如下<img src="https://gitee.com/tephen/images/raw/master/img/202111011925878.png" alt="截屏2021-11-01 下午6.56.01" style="zoom:50%;" /></p>
+</li>
+<li><p>基本命令使用</p>
+<p>首先使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eth.accounts</span><br></pre></td></tr></table></figure>
+
+<p>查看当前链上有哪些用户,返回[ ]表明当前链上没有用户*(zsh终端在此处也可以tab自动补全)*,因此首先使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">personal.newAccount(&quot;a&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>创建一个新账户,注意括号中的字符串为密码,账户名是执行该命令后链返回的分配的一串地址<img src="https://gitee.com/tephen/images/raw/master/img/202111011911838.png" alt="截屏2021-11-01 下午7.11.28"></p>
+<p>绿色部分即为账户名,此时再使用<code>eth.accounts</code>命令,返回的列表中已有了一个账户.所有用户储存在eth.accounts数组中,此时eth.accounts[0]即为刚刚创建的用户.为便于后续使用,和其他编程语言一样使用一个变量来为账户命名</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">user1 = eth.accounts[0]</span><br></pre></td></tr></table></figure>
+
+<p>使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eth.getBalance(user1)</span><br></pre></td></tr></table></figure>
+
+<p>查看当前账户余额,发现为0. 使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">miner.start()</span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">miner.start(1)</span><br></pre></td></tr></table></figure>
+
+<p>开始挖矿,建议使用带1参数的,不带参数会默认全力挖矿,电脑发热比较严重.观察日志文件中挖矿进行一段时间后使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">miner.stop()</span><br></pre></td></tr></table></figure>
+
+<p>停止挖矿,再次查看user1余额发现已经有了不少余额.此时已经可以进行转账交易了,为进行交易,先创建另一个钱包空空的新账户并将它命名为user2</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">personal.newAccount(&quot;b&quot;)</span><br><span class="line">user2 = eth.accounts[1]</span><br></pre></td></tr></table></figure>
+
+<p>定义转账金额为1ETH,在以太坊上进行交易，需要将ETH 单位转为Wei 单位</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">amount = web3.toWei(1, &quot;ether&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>要进行交易,首先要把转出账户进行解锁,注意解锁一段时间后会重新上锁,再进行交易或者某些操作可能需要重新解锁.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">personal.unlockAccount(user1,&quot;a&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>使用sendTransaction函数进行交易请求</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eth.sendTransaction(&#123;from: user1, to: user2, value: amount&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>此时交易信息已经请求添加到区块链中,但交易此时尚未完成,因为链上没有账户在挖矿充当矿工,因此重新启动挖矿后才会将这条交易数据打包到新的区块中.使用<code>eth.pendingTransactions</code>命令查看待打包上链的交易信息:</p>
+<img src="https://gitee.com/tephen/images/raw/master/img/202111011956570.png" alt="截屏2021-11-01 下午7.55.47" style="zoom:67%;" />
+
+<p>开始挖矿,当挖到一个新的区块时该交易就完成了打包上链,转账也就完成了(记得停止挖矿),此时<code>eth.getBalance(user2)</code>发现该账户已经有了余额:<img src="https://gitee.com/tephen/images/raw/master/img/202111012003145.png" alt="截屏2021-11-01 下午8.03.31"></p>
+</li>
+</ul>
+</li>
+<li><p>部署Helloworld智能合约上链</p>
+<ul>
+<li><p>安装网页版remix编译智能合约代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install remix-ide -g</span><br><span class="line">remix-ide</span><br></pre></td></tr></table></figure>
+
+<p>此时会出现错误信息<code>cannt find module &#39;remixd&#39;</code>,根据错误信息定位到相关文件后,注释或者删除文件中涉及remixd模块的代码,本次无需用到该模块,因此直接注释掉相关内容.注释后再次使用<code>remix-ide</code>命令打开remix.通过提示的本地网址在浏览器打开即可.</p>
+</li>
+<li><p>编写并编译helloworld代码</p>
+<p>在browser项目下新建hello.sol文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity &gt;=0.4.22 &lt;0.6.0;</span><br><span class="line">contract hello &#123;</span><br><span class="line">    string greeting;</span><br><span class="line"></span><br><span class="line">    function hello(string _greeting) public &#123;</span><br><span class="line">        greeting = _greeting;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function say() constant public returns (string) &#123;</span><br><span class="line">        return greeting;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>选用适当版本的编译器对hello.sol进行编译</p>
+<img src="https://gitee.com/tephen/images/raw/master/img/202111021603492.png" alt="截屏2021-11-02 下午4.03.48" style="zoom:50%;" />
+
+<p>若编译成功,点击Compilation Details按钮并复制其中的WEB3DEPLOY部分的代码到编辑器进行修改,这个例子里将第一行的占位注释部分使用”Hello World”代替即可.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var _greeting = &quot;Hello World&quot; ;</span><br><span class="line">var helloContract = web3.eth.contract([&#123;&quot;constant&quot;:true,&quot;inputs&quot;:[],&quot;name&quot;:&quot;say&quot;,&quot;outputs&quot;:[&#123;&quot;name&quot;:&quot;&quot;,&quot;type&quot;:&quot;string&quot;&#125;],&quot;payable&quot;:false,&quot;stateMutability&quot;:&quot;view&quot;,&quot;type&quot;:&quot;function&quot;&#125;,&#123;&quot;inputs&quot;:[&#123;&quot;name&quot;:&quot;_greeting&quot;,&quot;type&quot;:&quot;string&quot;&#125;],&quot;payable&quot;:false,&quot;stateMutability&quot;:&quot;nonpayable&quot;,&quot;type&quot;:&quot;constructor&quot;&#125;]);</span><br><span class="line">var hello = helloContract.new(</span><br><span class="line">   _greeting,</span><br><span class="line">   &#123;</span><br><span class="line">     from: web3.eth.accounts[0], </span><br><span class="line">     data: &#x27;0x608060405234801561001057600080fd5b506040516102a83803806102a8833981018060405281019080805182019291905050508060009080519060200190610049929190610050565b50506100f5565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061009157805160ff19168380011785556100bf565b828001600101855582156100bf579182015b828111156100be5782518255916020019190600101906100a3565b5b5090506100cc91906100d0565b5090565b6100f291905b808211156100ee5760008160009055506001016100d6565b5090565b90565b6101a4806101046000396000f300608060405260043610610041576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063954ab4b214610046575b600080fd5b34801561005257600080fd5b5061005b6100d6565b6040518080602001828103825283818151815260200191508051906020019080838360005b8381101561009b578082015181840152602081019050610080565b50505050905090810190601f1680156100c85780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b606060008054600181600116156101000203166002900480601f01602080910402602001604051908101604052809291908181526020018280546001816001161561010002031660029004801561016e5780601f106101435761010080835404028352916020019161016e565b820191906000526020600020905b81548152906001019060200180831161015157829003601f168201915b50505050509050905600a165627a7a72305820f1ab76a5206b109e2edbfec1817ec99d0110d1336837aead8da113424d6e9d620029&#x27;, </span><br><span class="line">     gas: &#x27;4700000&#x27;</span><br><span class="line">   &#125;, function (e, contract)&#123;</span><br><span class="line">    console.log(e, contract);</span><br><span class="line">    if (typeof contract.address !== &#x27;undefined&#x27;) &#123;</span><br><span class="line">         console.log(&#x27;Contract mined! address: &#x27; + contract.address + &#x27; transactionHash: &#x27; + contract.transactionHash);</span><br><span class="line">    &#125;</span><br><span class="line"> &#125;)</span><br></pre></td></tr></table></figure></li>
+<li><p>智能合约部署</p>
+<p>智能合约的部署和交易类似,需要一个账户中有余额的账户发起,且链上有账户在挖矿时才能部署成功,而且和交易一样需要对账户进行解锁.将上述代码中的eth.accounts[0]账户解锁并启动挖矿后,将上述代码复制到geth控制台中运行,返回出现Contract mined!后表明合约已成功部署</p>
+<p>随后输入helloworld.say()成功显示字符串</p>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/10/31/hello-world/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Hello World</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Keep Team</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+
+
+
+
+
+<div class="post-scripts">
+    
+</div>
+
+
+
+</body>
+</html>
